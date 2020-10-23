@@ -3,7 +3,7 @@ import './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
-const App = () => {
+const App = (props) => {
 
 // STATE ===========================================================================
   const [ personsState, setPersonsState ] = useState({
@@ -73,7 +73,8 @@ const App = () => {
 
   return (
       <div className="App">
-        <Cockpit 
+        <Cockpit
+          title={props.appTitle} // Passes in from index.js
           style={styleClasses.join(' ')} 
           display={showPersons} 
           toggle={togglePersonHandler} />
