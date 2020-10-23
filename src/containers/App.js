@@ -1,22 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import styled from 'styled-components';
-import Person from '../components/Persons/Person/Person';
-
-const StyledButton = styled.button`
-  background-color: ${props => props.alternative ? 'red' : 'green'};
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  border-radius: 10px;
-  cursor: pointer;
-  outline: none;
-  &:hover {
-    background-color: ${props => props.alternative ? 'salmon' : 'lightgreen'};
-    color: black
-  }
-`;
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 const App = () => {
 
@@ -79,25 +64,19 @@ const App = () => {
   let personsDiv = null;
 
   if (showPersons) {
-    personsDiv = (
-      <div >
-        {personsState.persons.map((person, index) => {
-          return <Person 
-          key={person.id} 
-          click={() => deletePersonHandler(index)} 
-          name={person.name} 
-          age={person.age}
-          inputName={(event) => nameInputHandler(event, person.id)} />
-        })}
-      </div>
-    );
-  }
+    personsDiv = 
+        <Persons
+          persons={personsState.persons}
+          clicked={deletePersonHandler}
+          changed={nameInputHandler} />
+  };
 
   return (
       <div className="App">
-        <h1>This is a React App</h1>
-        <p className={styleClasses.join(' ')}>This is really working!</p>
-        <StyledButton alternative={showPersons} onClick={togglePersonHandler}>Toggle Persons</StyledButton>
+        <Cockpit 
+          style={styleClasses.join(' ')} 
+          display={showPersons} 
+          toggle={togglePersonHandler} />
         {personsDiv}
       </div>
   ); 
