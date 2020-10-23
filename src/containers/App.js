@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import styled from 'styled-components';
-import Person from './components/Persons/Person/Person';
+import Person from '../components/Persons/Person/Person';
 
 const StyledButton = styled.button`
   background-color: ${props => props.alternative ? 'red' : 'green'};
